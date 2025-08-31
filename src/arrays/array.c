@@ -1,32 +1,34 @@
 #include "array.h"
+#include <stdint.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
-Array fucking_array_init(size_t type, size_t len) {
-    Array outp = {
+PtrArray fck_array_init(size_t len) {
+    PtrArray outp = {
         .Length = len,
-        .data_type = type,
-        .ptr = malloc(type * len)
+        .ptr = malloc(sizeof(void*)* len)
     };
     return outp;
 }
 
-void fucking_array_deinit(Array *base) {
+void fck_array_deinit(PtrArray *base) {
     free(base->ptr);
     base->Length = 0;
 }
 
-bool fucking_array_insert(Array base, size_t address, void *value) {
+bool fck_array_insert(PtrArray base, size_t address, void *value) {
     if(base.Length <= address) {
         return false;
     }
-    memcpy(base.ptr + base.data_type * address, value, base.data_type);
+    base.ptr[address] = value;
     return true;
 }
 
-void *fucking_array_get(Array base, size_t address) {
+void *fck_array_get(PtrArray base, size_t address) {
     if(base.Length <= address) {
         return NULL;
     }
-    return base.ptr + base.data_type * address;
+    return base.ptr[address];
 }

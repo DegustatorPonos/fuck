@@ -6,22 +6,21 @@
 #include <sys/types.h>
 
 typedef struct{
-    void *ptr;
     size_t Length;
-    size_t data_type;
-} Array;
+    void **ptr;
+} PtrArray;
 
 // Makes a new array struct in stack and allocates 
 // a memory for the array in the heap
-Array fucking_array_init(size_t type, size_t len);
+PtrArray fck_array_init(size_t len);
 
 // Frees the allocated memory and prevents futher array usage
-void fucking_array_deinit(Array *base);
+void fck_array_deinit(PtrArray *base);
 
 // Inserts value in the array. Returns the success status
-bool fucking_array_insert(Array base, size_t address, void *value);
+bool fck_array_insert(PtrArray base, size_t address, void *value);
 
 // Returns a pointer to the value from the array
-void *fucking_array_get(Array base, size_t address);
+void *fck_array_get(PtrArray base, size_t address);
 
-#endif //FUCK_ARRAY_IMPL_H
+#endif //FUCK_ARRAY_H
