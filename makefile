@@ -3,6 +3,8 @@ CFLAGS = -Wall
 NAME = libfuck.so
 LINK_FLAG = ./libfuck.so 
 
+fuck_builder: lib_full
+	$(CC) $(CFLAGS) $(LINK_FLAG) builder/main.c -o ./builder.a
 
 lib_full: arrays flags
 	$(CC) -shared build/*.o -o $(NAME)
@@ -18,3 +20,6 @@ flags:
 
 example_array: lib
 	$(CC) $(CFLAGS) $(LINK_FLAG) examples/example_array.c -o example.a
+
+example_flags: lib_full
+	$(CC) $(CFLAGS) $(LINK_FLAG) examples/example_flags.c -o ./example.a
