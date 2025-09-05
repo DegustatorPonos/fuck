@@ -6,14 +6,15 @@ typedef struct {
 } Data;
 
 int main() {
-    PtrList list = fck_list_init(0);
+    PtrList list = fck_list_init(2);
     Data data0 = {.Id = 0};
     Data data1 = {.Id = 1};
-    if(!fck_list_append(&list, &data0))
-        printf("flag 1!\n");
-    if(!fck_list_append(&list, &data1))
-        printf("flag 1!\n");
+    Data data2 = {.Id = 29};
+    fck_list_append(&list, &data0);
+    fck_list_append(&list, &data1);
+    fck_list_append(&list, &data2);
     printf("List len: %lu | cap = %lu\n", list.Length, list.Capacity);
+
     for(int i = 0; i < list.Length; i++) {
         void *test = fck_list_get(&list, i);
         if (test == NULL) {

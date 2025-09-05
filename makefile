@@ -15,7 +15,7 @@ lists:
 flags:
 	$(CC) -c $(CFLAGS) src/flags/flags.c -o build/flags.o
 
-lib_full: arrays flags
+lib_full: arrays flags lists
 	$(CC) $(CFLAGS) -shared build/*.o -o $(NAME)
 
 example_array: lib_full
